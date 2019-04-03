@@ -1,5 +1,5 @@
 ENV['SINATRA_ENV'] ||= "development"
-
+ENV['SINATRA_ACTIVESUPPORT_WARNING'] = "false"
 require 'bundler/setup'
 Bundler.require(:default, ENV['SINATRA_ENV'])
 
@@ -14,9 +14,12 @@ EX_MSG
   end
 end
 
+# SINATRA_ACTIVESUPPORT_WARNING=false
+
 ActiveRecord::Base.establish_connection(
   :adapter => "sqlite3",
   :database => "db/#{ENV['SINATRA_ENV']}.sqlite"
+
 )
 
 require_all 'app'
